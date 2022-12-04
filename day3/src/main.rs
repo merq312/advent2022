@@ -8,10 +8,11 @@ fn get_char_value(c: char) -> i32 {
     }
 }
 
-fn first(backpacks: &Vec<(&str, &str)>) {
+fn first(backpacks: &Vec<&str>) {
     let mut sums = 0;
 
-    for (first, second) in backpacks {
+    for bp in backpacks {
+        let (first, second) = bp.split_at(bp.len() / 2);
         let mut s1: HashSet<char> = first.chars().collect();
         let s2: HashSet<char> = second.chars().collect();
         s1.retain(|c| s2.contains(c));
@@ -42,14 +43,11 @@ fn second(backpacks: &Vec<&str>) {
 }
 
 fn main() {
-    let context = include_str!("../data.txt").trim().split("\n");
+    let backpacks = include_str!("../data.txt")
+        .trim()
+        .split("\n")
+        .collect::<Vec<&str>>();
 
-    let backpacks = context
-        .clone()
-        .map(|ea| ea.split_at(ea.len() / 2))
-        .collect::<Vec<(&str, &str)>>();
     first(&backpacks);
-
-    let backpacks = context.collect::<Vec<&str>>();
     second(&backpacks);
 }
