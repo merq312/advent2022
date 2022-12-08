@@ -25,3 +25,12 @@ exports.onlyInts = function(str) {
 exports.onlyFloats = function(str) {
   return str.match(/(\d+(?:\.\d+)?)/g).map(ea => parseFloat(ea));
 }
+
+exports.atoi = function(c) {
+  let i = c.charCodeAt(0)
+  return i > 90 ? i - 97 : i - 39
+}
+
+exports.enumerate = function enumerate(arr) {
+  return Object.entries(arr)
+}
