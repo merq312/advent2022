@@ -25,7 +25,7 @@ let grid = read('data')
 
 for (start of aPos) {
   // Vertex Table --> steps : [last vertex in path]
-  let vertexTable = {}
+  let vertexTable = Array()
   // Visited vertices
   let visited = new Set()
 
@@ -33,7 +33,6 @@ for (start of aPos) {
   let colMax = grid[0].length
 
   visited.add(JSON.stringify(start))
-  vertexTable = Array()
   vertexTable.push([0, start])
 
   while (true) {

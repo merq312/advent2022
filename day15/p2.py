@@ -1,9 +1,8 @@
 import re
 
-lines = open("data").read().splitlines()
 bs = set()
 input = []
-for line in lines:
+for line in open("data"):
     ns = re.findall(r"-?\d+", line)
     a = []
     for n in ns:

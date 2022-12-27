@@ -1,9 +1,8 @@
 import re
 
-lines = open("data").read().splitlines()
 bs = set()
 input = []
-for line in lines:
+for line in open("data"):
     ns = re.findall(r"-?\d+", line)
     a = []
     for n in ns:
@@ -16,12 +15,10 @@ s = set()
 y = 2000000
 for i in input:
     d = abs(i[2] - i[0]) + abs(i[3] - i[1])
-    if abs(y - i[1]) > d:
+    rem = d - abs(y - i[1])
+    if rem < 0:
         continue
-    for x in range(i[0] - d, i[0] + d + 1):
-        e = abs(i[0] - x) + abs(i[1] - y)
-        if e > d:
-            continue
+    for x in range(i[0] - rem, i[0] + rem + 1):
         if (x, y) not in bs:
             s.add((x, y))
 
